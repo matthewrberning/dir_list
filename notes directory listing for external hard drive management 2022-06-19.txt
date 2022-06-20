@@ -1,0 +1,58 @@
+notes: directory listing for external hard drive management 2022-06-19
+
+I want to make a diredtory tree for cataloging my old external hard drives as I move them to a NAS
+Ideally they will end up looking something like this:
+
+D:\
+├── VIDEOS (15 files, 7 directories)
+│	├── Bvideos (15 files, 1 directory)
+│	│   └── BVIDEOS (15 files)
+│	├── Fake (23 files)
+│	├── Help (15 files)
+│	├── Misc (15 files)
+│	├── New (15 files)
+│	├── small (15 files, 1 directory)
+│	│   └── New folder (15 files)
+│	└── inf (15 files)
+
+etc...
+
+there is code on stack overflow to generate something similar 
+	here: https://stackoverflow.com/a/59109706
+
+however it does not create exactly what I need 
+	-no ennumeration of the dirs and files in a specific directory
+	-breakes on $RECYCLE.BIN hidden folder in hard drive
+
+I'm going to work on a new/modified version
+
+creating a conda env in windows:
+	conda create --name dirlist39 python=3.9
+
+creating a new project folder:
+	"\Prohect - dir_list"
+
+script file in project dir:
+	dir_list.py
+
+and jupyter notebook for testing:
+	dir_list_exploration.ipynb
+
+
+start with re-learning about generators:
+	https://www.youtube.com/watch?v=bD05uGo_sVI
+
+
+after learning about generators I had to mess with the layout of the code to deal with the recursion that was happening
+as the enumeration of the contents of the needed to happen before the next instance of recursion
+
+so I had to dive into the directories count the contents then come back up with that number in order to print it
+at the appropriate time
+
+it works!
+
+in order to deal with issues regarding file permissions ($RECYCLE.BIN and System Volume Information) I added those as
+criteria when evaluating the next set fo contents to add to the directory tree
+
+done!
+
